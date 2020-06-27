@@ -11,8 +11,14 @@ export default class App extends Component{
             <div className = 'app container'>
                 <Header/>
                 <RandomPlanet/>
-                <ItemList/>
-                <PersonDetails/>
+                <div className = 'row'>
+                    <div className ='col-6'>
+                        <ItemList/>
+                    </div>
+                    <div className ='col-6'>
+                        <PersonDetails/>
+                    </div>
+                </div>
             </div>
         )
     }
