@@ -6,6 +6,18 @@ import ItemList from '../item-list/item-list'
 import PersonDetails from '../person-details/person-details'
 
 export default class App extends Component{
+
+    state = {
+        selectedPerson: null
+    }
+
+    onPersonSelected = (id) => {
+        this.setState({
+            selectedPerson: id
+        })
+        console.log(id)
+    }
+
     render(){
         return(
             <div className = 'app container'>
@@ -13,7 +25,7 @@ export default class App extends Component{
                 <RandomPlanet/>
                 <div className = 'row'>
                     <div className ='col-6'>
-                        <ItemList/>
+                        <ItemList onItemSelected = {this.onPersonSelected}/>
                     </div>
                     <div className ='col-6'>
                         <PersonDetails/>
