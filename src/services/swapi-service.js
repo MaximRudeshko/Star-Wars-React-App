@@ -16,8 +16,9 @@ export default class SwapiService{
         return res.results.map(item => this.transformPerson(item))
     }
 
-    getPerson(id){
-        return this.getResources(`/people/${id}`)
+    async getPerson(id){
+        const person = await this.getResources(`/people/${id}`)
+        return this.transformPerson(person)
     }
 
     async getAllStarships(){
