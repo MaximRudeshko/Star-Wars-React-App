@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import Header from '../header/header'
 import './app.css'
 import RandomPlanet from '../random-planet/random-planet'
-import ItemList from '../item-list/item-list'
-import PersonDetails from '../person-details/person-details'
+import PeoplePage from '../people-page/people-page'
 
 export default class App extends Component{
 
@@ -23,14 +22,7 @@ export default class App extends Component{
             <div className = 'app container'>
                 <Header/>
                 <RandomPlanet/>
-                <div className = 'row'>
-                    <div className ='col-6'>
-                        <ItemList onItemSelected = {this.onPersonSelected}/>
-                    </div>
-                    <div className ='col-6'>
-                        <PersonDetails personId = {this.state.selectedPerson}/>
-                    </div>
-                </div>
+                <PeoplePage/>
             </div>
         )
     }
