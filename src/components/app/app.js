@@ -19,7 +19,6 @@ export default class App extends Component{
         this.setState({
             selectedPerson: id
         })
-        console.log(id)
     }
 
     render(){
@@ -29,29 +28,7 @@ export default class App extends Component{
                 <RandomPlanet/>
                 <PeoplePage/>
 
-                <div className = 'row mt-2 mb-2'>
-                    <div className ='col-6'>
-                        <ItemList 
-                        getData = {this.swapiService.getAllStarships}
-                        onItemSelected = {this.onPersonSelected}
-                        renderItem = {item => item.name}/>
-                    </div>
-                    <div className ='col-6'>
-                        <PersonDetails personId = {this.state.selectedPerson}/>
-                    </div>
-                </div>
-
-                <div className = 'row mt-2 mb-2'>
-                    <div className ='col-6'>
-                        <ItemList 
-                        getData = {this.swapiService.getAllPlanet}
-                        onItemSelected = {this.onPersonSelected}
-                        renderItem = {item => item.name}/>
-                    </div>
-                    <div className ='col-6'>
-                        <PersonDetails personId = {this.state.selectedPerson}/>
-                    </div>
-                </div>
+                
             </div>
         )
     }

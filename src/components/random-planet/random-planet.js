@@ -43,7 +43,7 @@ export default class RandomPlanet extends Component{
     }
 
     updatePlanet = () => {
-        const id = Math.floor((Math.random() * 25) + 2) 
+        const id = Math.floor((Math.random() * 17) + 2) 
         this.swapiservice
             .getPlanet(id)
             .then(planet => {
@@ -57,8 +57,6 @@ export default class RandomPlanet extends Component{
 
 
     render(){
-
-        console.log('render')
         const {planet, loading, error} = this.state
 
         const errorMessage = error ? <ErrorIndicator/> : null
