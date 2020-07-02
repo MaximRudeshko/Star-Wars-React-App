@@ -3,14 +3,30 @@ import React, { Component } from 'react'
 import './person-details.css'
 import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner/spinner'
+import ErrorBtn from '../error-btn/error-btn'
 
-export default class PersonDetails extends Component{
+const Record = ({item, field, label}) => {
+
+    return(
+        <li className = 'list-group-item'>
+            <span className = 'term'>{label}</span>
+            <span>{item[field]}</span>
+        </li>
+    )
+}
+
+export {Record}
+
+
+
+export default class ItemDetails extends Component{
     swapiService = new SwapiService()
 
     state = {
-        person: null,
+        item: null,
         loading: false,
-        startMessage: true
+        startMessage: true,
+        image:null
     }
 
     
@@ -20,11 +36,11 @@ export default class PersonDetails extends Component{
     }
 
     componentDidUpdate(prevProps){
-        if(this.props.personId !== prevProps.personId){   
+        if(this.props.itemId !== prevProps.itemId){   
             this.setState({
                 startMessage:false,
                 loading:true,
-                person:null
+                item:null
             })
                      
             this.updatePerson()
@@ -33,17 +49,19 @@ export default class PersonDetails extends Component{
 
     
     updatePerson(){
-        const {personId} = this.props
+        const {itemId, getData,getImage} = this.props
 
-        if(!personId){
+        if(!itemId){
             return 
         }
         this.loading = false
-        this.swapiService
-            .getPerson(personId)
-            .then(person => {
+        
+        getData(itemId)
+            .then(item => {
                 this.setState({
-                    person
+                    item,
+                    startMessage : false,
+                    image:getImage(item)
                 })
                 
             })
@@ -52,37 +70,33 @@ export default class PersonDetails extends Component{
 
     render(){
 
-         if(this.state.startMessage){
+        console.log()
+        if(this.state.startMessage){
             return <span className = 'choose-character'>Choose you favorite character</span>
-        }
+        } 
 
-        if(!this.state.person || this.loading){
+        if(!this.state.item){
             return <Spinner/>
         }
 
-        const {id, name, gender, eyeColor, birthYear} = this.state.person
+        const {item} = this.state
+
+        const {id, name, gender, eyeColor, birthYear} = this.state.item
             return(
                 <div className = 'person-details card d-flex'>
                     <img className = 'person-image'
                          alt = {name} 
-                         src = {`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}/>
+                         src = {this.state.image}/>
                     <div className = 'card-body'>
                         <h4 className = 'person-name'>{name}</h4>
                         <ul className = 'list-group list-group-flush'>
-                            <li className = 'list-group-item'>
-                                <span className = 'term'>Gender</span>
-                                <span>{gender}</span>
-                            </li>
-                            <li className = 'list-group-item'>
-                                <span className = 'term'>Birth Year</span>
-                                <span>{birthYear}</span>
-                            </li>
-                            <li className = 'list-group-item'>
-                                <span className = 'term'>Eye color</span>
-                                <span>{eyeColor}</span>
-                            </li>
+                            
+                            {React.Children.map(this.props.children, child => {
+                                return React.cloneElement(child, {item})
+                            })}
                         </ul>
                     </div>
+                    <ErrorBtn/>
                 </div>
         )        
     }        
