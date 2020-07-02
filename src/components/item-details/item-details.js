@@ -17,8 +17,6 @@ const Record = ({item, field, label}) => {
 
 export {Record}
 
-
-
 export default class ItemDetails extends Component{
     swapiService = new SwapiService()
 
@@ -28,8 +26,6 @@ export default class ItemDetails extends Component{
         startMessage: true,
         image:null
     }
-
-    
 
     componentDidMount(){
         this.updatePerson()
@@ -47,7 +43,6 @@ export default class ItemDetails extends Component{
         }
     }
 
-    
     updatePerson(){
         const {itemId, getData,getImage} = this.props
 
@@ -67,7 +62,6 @@ export default class ItemDetails extends Component{
             })
         }
 
-
     render(){
 
         console.log()
@@ -81,7 +75,7 @@ export default class ItemDetails extends Component{
 
         const {item} = this.state
 
-        const {id, name, gender, eyeColor, birthYear} = this.state.item
+        const {name} = this.state.item
             return(
                 <div className = 'person-details card d-flex'>
                     <img className = 'person-image'

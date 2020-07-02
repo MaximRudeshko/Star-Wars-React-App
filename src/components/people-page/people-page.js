@@ -6,6 +6,7 @@ import ErrorIndicator from '../error-indicator/error-indicator'
 import SwapiService from '../../services/swapi-service'
 import Row from '../content-row/content-row'
 import ErrorBoundry from '../error-boundry/error-boundry'
+import PersonList from '../sw-components/sw-components'
 
 
 export default class PeoplePage extends Component{
@@ -28,12 +29,7 @@ export default class PeoplePage extends Component{
             return <ErrorIndicator/>
         }
 
-        const itemList = (
-            <ItemList 
-                getData = {this.swapiService.getAllPeople} 
-                onItemSelected = {this.onPersonSelected}
-                renderItem = {item => item.name}/>
-        )
+
 
         const personDetails = (
             <ErrorBoundry>
@@ -48,8 +44,19 @@ export default class PeoplePage extends Component{
             </ErrorBoundry> 
         )
 
+        const personList = (
+            <ItemList 
+            getData = {this.swapiService.getAllPeople} 
+            onItemSelected = {this.onPersonSelected}
+            >
+                {(i) => (
+                    `${i.name}`
+                )}
+            </ItemList>
+        )
+
         return(
-            <Row left = {itemList} right = {personDetails}/>
+            <Row left = {personList} right = {personDetails}/>
         )
     }
 }

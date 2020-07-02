@@ -50,6 +50,10 @@ export default class SwapiService{
         return this.transformPlanet(planet)
     }
 
+    getPlanetImage = ({id}) => {
+        return (`${this._imageBase}/planets/${id}.jpg`)
+    }
+
     extractId =(item) => {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1]

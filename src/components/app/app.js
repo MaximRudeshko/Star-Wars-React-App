@@ -5,10 +5,11 @@ import RandomPlanet from '../random-planet/random-planet'
 import PeoplePage from '../people-page/people-page'
 import SwapiService from '../../services/swapi-service'
 import ItemList from '../item-list/item-list'
-import PersonDetails, { Record } from '../item-details/item-details'
-import PlanetPage from '../planet-page/planet-page'
 import Row from '../content-row/content-row'
 import ItemDetails from '../item-details/item-details'
+import {PersonList, StarshipList, PlanetList} from '../sw-components/sw-components'
+import {PersonDetails, StarshipDetails, PlanetDetails} from '../sw-components/details'
+import {Record} from '../item-details'
 
 export default class App extends Component{
 
@@ -54,9 +55,27 @@ export default class App extends Component{
         return(
             <div className = 'app container'>
                 <Header/>
-                <RandomPlanet/>
+                {/* <RandomPlanet/>
                 <PeoplePage/> 
-                <Row left = {personDetails} right = {starshipDetails}/>
+                <Row left = {personDetails} right = {starshipDetails}/> */}
+
+                <PersonDetails itemId = {3}/>
+                <PlanetDetails itemId = {4}/>
+                <StarshipDetails itemId = {5}/>
+
+                <PersonList>
+                    {({name}) => <span>{name}</span>}
+                </PersonList>
+
+                <StarshipList>
+                     {({name}) => <span>{name}</span>}
+                </StarshipList>
+
+                <PlanetList>
+                    {({name}) => <span>{name}</span>}
+                </PlanetList>
+                
+                
             </div>
         )
     }

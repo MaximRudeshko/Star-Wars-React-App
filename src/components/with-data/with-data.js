@@ -11,6 +11,7 @@ const WithData = (View, getData) => {
         };
 
         componentDidMount(){
+            console.log(this.props)
             getData()
                 .then(data => {
                     this.setState({
@@ -22,6 +23,8 @@ const WithData = (View, getData) => {
         render(){
 
             const {data} = this.state
+
+            
 
             if(!data){
                 return <Spinner/>
