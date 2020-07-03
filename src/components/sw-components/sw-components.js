@@ -27,8 +27,7 @@ const withChildFunction = (Wrapped, func) => {
 const ListWithChildren = withChildFunction(ItemList, ({name}) => <span>{name}</span>)
 
 
-const PersonList = WithData(ListWithChildren, getAllPeople) 
-   
+const PersonList = WithData(ListWithChildren, getAllPeople)   
 const PlanetList = WithData(ListWithChildren, getAllPlanet)
 const StarshipList = WithData(ListWithChildren, getAllStarships)
 
