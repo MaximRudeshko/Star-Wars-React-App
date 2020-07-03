@@ -15,6 +15,7 @@ import {SwapiServiceProvider} from '../swapi-services-context/swapi-services-con
 export default class App extends Component{
 
     swapiService = new SwapiService()
+    
 
     state = {
         selectedPerson: null
