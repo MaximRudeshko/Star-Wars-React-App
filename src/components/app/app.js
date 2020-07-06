@@ -7,10 +7,10 @@ import SwapiService from '../../services/swapi-service'
 import ItemList from '../item-list/item-list'
 import Row from '../content-row/content-row'
 import ItemDetails from '../item-details/item-details'
-import {PersonList, StarshipList, PlanetList} from '../sw-components/sw-components'
-import {PersonDetails, StarshipDetails, PlanetDetails} from '../sw-components/details'
+import {PersonList, StarshipList, PlanetList, PersonDetails, StarshipDetails, PlanetDetails} from '../sw-components/index'
 import {Record} from '../item-details'
 import {SwapiServiceProvider} from '../swapi-services-context/swapi-services-context'
+
 
 export default class App extends Component{
 
