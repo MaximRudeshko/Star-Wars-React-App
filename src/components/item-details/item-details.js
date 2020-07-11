@@ -28,6 +28,7 @@ export default class ItemDetails extends Component{
     }
 
     componentDidMount(){
+        console.log(this.props)
         this.updatePerson()
     }
 
@@ -64,7 +65,6 @@ export default class ItemDetails extends Component{
 
     render(){
 
-        console.log()
         if(this.state.startMessage){
             return <span className = 'choose-character'>Choose you favorite character</span>
         } 

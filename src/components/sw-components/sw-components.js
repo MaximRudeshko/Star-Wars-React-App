@@ -1,16 +1,7 @@
 import React from 'react'
 import WithData from '../with-data/with-data'
 import ItemList from '../item-list/item-list'
-import SwapiService from '../../services/swapi-service'
-
-
-const swapiService = new SwapiService()
-
-const {
-    getAllPeople,
-    getAllPlanet,
-    getAllStarships
-} = swapiService;
+import withSwapiService from '../with-swapi-service/with-swapi-service'
 
 
 const withChildFunction = (Wrapped, func) => {
@@ -26,10 +17,27 @@ const withChildFunction = (Wrapped, func) => {
 
 const ListWithChildren = withChildFunction(ItemList, ({name}) => <span>{name}</span>)
 
+const mapPersonMethodsToProps = swapiService => {
+    return {
+        getData: swapiService.getAllPeople
+    }
+}
 
-const PersonList = WithData(ListWithChildren, getAllPeople)   
-const PlanetList = WithData(ListWithChildren, getAllPlanet)
-const StarshipList = WithData(ListWithChildren, getAllStarships)
+const mapPlanetMethodsToProps = swapiService => {
+    return {
+        getData: swapiService.getAllPlanet
+    }
+}
+
+const mapStarshipMethodsToProps = swapiService => {
+    return {
+        getData: swapiService.getAllStarships
+    }
+}
+const PersonList = withSwapiService(WithData(ListWithChildren), mapPersonMethodsToProps)  
+const PlanetList = withSwapiService(WithData(ListWithChildren), mapPlanetMethodsToProps)
+const StarshipList = withSwapiService(WithData(ListWithChildren), mapStarshipMethodsToProps)
+
 
 export {
     PersonList,
