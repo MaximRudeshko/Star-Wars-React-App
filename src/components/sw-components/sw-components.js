@@ -19,7 +19,7 @@ const ListWithChildren = withChildFunction(ItemList, ({name}) => <span>{name}</s
 
 const mapPersonMethodsToProps = swapiService => {
     return {
-        getData: swapiService.getAllPeople
+        getData: swapiService.getAllPeople      
     }
 }
 

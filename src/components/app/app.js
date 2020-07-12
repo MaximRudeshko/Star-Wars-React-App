@@ -2,23 +2,29 @@ import React, { Component } from 'react'
 import Header from '../header/header'
 import './app.css'
 import RandomPlanet from '../random-planet/random-planet'
-import PeoplePage from '../people-page/people-page'
+import PersonPage from '../pages/person-page'
+import PlanetPage from '../pages/planet-page'
+import StarshipPage from '../pages/starships-page'
 import SwapiService from '../../services/swapi-service'
-import ItemList from '../item-list/item-list'
-import Row from '../content-row/content-row'
-import ItemDetails from '../item-details/item-details'
-import {PersonList, StarshipList, PlanetList, PersonDetails, StarshipDetails, PlanetDetails} from '../sw-components/index'
-import {Record} from '../item-details'
 import {SwapiServiceProvider} from '../swapi-services-context/swapi-services-context'
+import DummySwapiService from '../../services/dummy-swapi-services'
 
 
 export default class App extends Component{
 
-    swapiService = new SwapiService()
-    
-
     state = {
-        selectedPerson: null
+        selectedPerson: null,
+        swapiService: new SwapiService()
+    }
+
+    onServiceChange = () => {
+        this.setState(({swapiService}) => {
+            const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
+
+            return {
+                swapiService: new Service()
+            }
+        })
     }
 
     onPersonSelected = (id) => {
@@ -29,46 +35,14 @@ export default class App extends Component{
 
     render(){
 
-        const {getPerson, getStarship, getPersonImage, getStarshipImage} = this.swapiService
-
-        const personDetails = (
-            <ItemDetails 
-                getData = {getPerson}
-                getImage = {getPersonImage}
-                itemId = {11}>
-                    
-                <Record field = 'gender' label = 'male'/>
-                <Record field = 'birthYear' label = '1996'/>
-                <Record field = 'eyeColor' label = 'Blue'/>
-            </ItemDetails>
-        )
-
-        const starshipDetails = (
-            <ItemDetails 
-                getData = {getStarship}
-                itemId = {11}
-                getImage = {getStarshipImage}>
-                <Record field = 'model' label = '1'/>
-                <Record field = 'manufacturer' label = '2'/>
-                <Record field = 'costInCredits' label = '3'/>
-            </ItemDetails>
-        )
-
         return(
-            <SwapiServiceProvider value = {this.swapiService}>
+            <SwapiServiceProvider value = {this.state.swapiService}>
                 <div className = 'app container'>
-                    <Header/>
-                    {/* <RandomPlanet/>
-                    <PeoplePage/> 
-                    <Row left = {personDetails} right = {starshipDetails}/> */}
-
-                    <PersonDetails itemId = {3}/>
-                    <PlanetDetails itemId = {4}/>
-                    <StarshipDetails itemId = {5}/>
-
-                    <PersonList/>
-                    <StarshipList/>
-                    <PlanetList/>
+                    <Header onServiceChange = {this.onServiceChange}/>
+                    <RandomPlanet/>
+                    <PersonPage/>
+                    <PlanetPage/>
+                    <StarshipPage/>
                 </div>
             </SwapiServiceProvider>
         )

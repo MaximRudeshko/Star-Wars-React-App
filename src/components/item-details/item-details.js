@@ -24,16 +24,15 @@ export default class ItemDetails extends Component{
         item: null,
         loading: false,
         startMessage: true,
-        image:null
+        image: null
     }
 
     componentDidMount(){
-        console.log(this.props)
         this.updatePerson()
     }
 
     componentDidUpdate(prevProps){
-        if(this.props.itemId !== prevProps.itemId){   
+        if(this.props.itemId !== prevProps.itemId || this.props.getData !== prevProps.getData || this.props.getImage !== prevProps.getImage){   
             this.setState({
                 startMessage:false,
                 loading:true,
@@ -45,6 +44,7 @@ export default class ItemDetails extends Component{
     }
 
     updatePerson(){
+
         const {itemId, getData,getImage} = this.props
 
         if(!itemId){
@@ -54,6 +54,8 @@ export default class ItemDetails extends Component{
         
         getData(itemId)
             .then(item => {
+                console.log(item)
+                console.log(item.id)
                 this.setState({
                     item,
                     startMessage : false,

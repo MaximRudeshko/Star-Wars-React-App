@@ -57,7 +57,7 @@ export default class DummySwapiService {
       return this._people[0];
     };
   
-    getAllPlanets = async () => {
+    getAllPlanet = async () => {
       return this._planets;
     };
   
