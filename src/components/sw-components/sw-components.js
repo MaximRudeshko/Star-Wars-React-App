@@ -15,7 +15,7 @@ const withChildFunction = (Wrapped, func) => {
 
 }
 
-const ListWithChildren = withChildFunction(ItemList, ({name}) => <span>{name}</span>)
+
 
 const mapPersonMethodsToProps = swapiService => {
     return {
@@ -34,9 +34,37 @@ const mapStarshipMethodsToProps = swapiService => {
         getData: swapiService.getAllStarships
     }
 }
-const PersonList = withSwapiService(mapPersonMethodsToProps)(WithData(ListWithChildren))  
-const PlanetList = withSwapiService(mapPlanetMethodsToProps)(WithData(ListWithChildren))
-const StarshipList = withSwapiService(mapStarshipMethodsToProps)(WithData(ListWithChildren))
+
+/* const renderName = ({name}  ) => <span>{name}</span>
+
+const compose = (...func) => (comp) => {
+    return func.reduceRight((prev, f) => f(prev), comp)
+}
+
+
+
+const PersonList = compose(
+    withSwapiService(mapPersonMethodsToProps),
+    WithData,
+    withChildFunction(renderName),
+)(ItemList)
+
+const PlanetList = compose(
+    withSwapiService(mapPlanetMethodsToProps),
+    WithData,
+    withChildFunction(renderName)
+)(ItemList)
+
+const StarshipList = compose(
+    withSwapiService(mapStarshipMethodsToProps),
+    WithData,
+    withChildFunction(renderName)
+)(ItemList) */
+
+
+const PersonList = withSwapiService(mapPersonMethodsToProps)(WithData(withChildFunction(ItemList, ({name}) => <span>{name}</span>)))  
+const PlanetList = withSwapiService(mapPlanetMethodsToProps)(WithData(withChildFunction(ItemList, ({name}) => <span>{name}</span>)))
+const StarshipList = withSwapiService(mapStarshipMethodsToProps)(WithData(withChildFunction(ItemList, ({name}) => <span>{name}</span>)))
 
 
 export {

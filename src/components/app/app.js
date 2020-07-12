@@ -14,7 +14,7 @@ export default class App extends Component{
 
     state = {
         selectedPerson: null,
-        swapiService: new SwapiService()
+        swapiService: new DummySwapiService()
     }
 
     onServiceChange = () => {
