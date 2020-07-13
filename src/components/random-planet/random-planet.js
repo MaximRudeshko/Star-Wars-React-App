@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner/spinner'
 import ErrorIndicator from '../error-indicator/error-indicator'
+import PropTypes from 'prop-types'
 
 import './random-planet.css'
 
@@ -82,15 +83,7 @@ RandomPlanet.defaultProps = {
 }
 
 RandomPlanet.propTypes = {
-    updateInterval: (props, propName, componentName) => {
-        const value = props[propName]
-
-        if(value === 'number' && !isNaN(value)){
-            return null
-        }
-
-        throw new TypeError(`${componentName}`)
-    }
+    updateInterval: PropTypes.number
 }
 
 

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './item-list.css'
+import propTypes, {arrayOf} from 'prop-types'
 
 const ItemList = (props) => {
 
@@ -21,16 +22,20 @@ const ItemList = (props) => {
         )
     })
 
-    ItemList.defaultProps = {
-        onItemSelected: () => {}
-    }
-
-
     return(
         <ul className = 'item-list list-group'>
             {items}
         </ul>   
     )   
+}
+
+ItemList.defaultProps = {
+    onItemSelected: () => {}
+}
+
+ItemList.propTypes = {
+    data: arrayOf(propTypes.object).isRequired,
+    onItemSelected: propTypes.func
 }
 
 export default ItemList

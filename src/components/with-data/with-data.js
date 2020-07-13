@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Spinner from '../spinner/spinner'
 import ErrorIndicator from '../error-indicator/error-indicator';
+import propTypes from 'prop-types'
 
 
 
@@ -59,6 +60,7 @@ const WithData = (View) => {
         }
     }
 }
+
 
 export default WithData
 
