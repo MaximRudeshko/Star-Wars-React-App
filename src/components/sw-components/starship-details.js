@@ -5,9 +5,9 @@ import WithSwapiService from '../with-swapi-service/with-swapi-service'
 const StarshipDetails = (props) => {
     return(
             <ItemDetails {...props}>
-                <Record field = 'model' label = '1'/>
-                <Record field = 'manufacturer' label = '2'/>
-                <Record field = 'costInCredits' label = '3'/>
+                <Record field = 'model' label = 'Model'/>
+                <Record field = 'manufacturer' label = 'Manafacturer'/>
+                <Record field = 'costInCredits' label = 'Cost In Credits'/>
             </ItemDetails>
             )
         

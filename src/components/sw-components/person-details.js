@@ -5,9 +5,9 @@ import withSwapiService from '../with-swapi-service/with-swapi-service'
 const PersonDetails = (props) => {
         return(
             <ItemDetails {...props}>
-                <Record field = 'model' label = '1'/>
-                <Record field = 'manufacturer' label = '2'/>
-                <Record field = 'costInCredits' label = '3'/>
+                <Record field = 'name' label = 'Name'/>
+                <Record field = 'birthYear' label = 'Birth Year'/>
+                <Record field = 'eyeColor' label = 'Eye Color'/>
             </ItemDetails>
         )
 

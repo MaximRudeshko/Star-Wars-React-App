@@ -12,6 +12,8 @@ export default class RandomPlanet extends Component{
 
     swapiservice = new SwapiService()
 
+    
+
     state = {
         planet:{},
         loading:true,
@@ -19,8 +21,9 @@ export default class RandomPlanet extends Component{
     }
 
     componentDidMount(){
+        const {updateInterval} = this.props
         this.updatePlanet()
-        this.interval = setInterval(this.updatePlanet, 5000)
+        this.interval = setInterval(this.updatePlanet, updateInterval)
     }
 
     componentWillUnmount(){
@@ -71,6 +74,22 @@ export default class RandomPlanet extends Component{
                 {content}
             </div>
         )
+    }
+}
+
+RandomPlanet.defaultProps = {
+    updateInterval: 3000
+}
+
+RandomPlanet.propTypes = {
+    updateInterval: (props, propName, componentName) => {
+        const value = props[propName]
+
+        if(value === 'number' && !isNaN(value)){
+            return null
+        }
+
+        throw new TypeError(`${componentName}`)
     }
 }
 

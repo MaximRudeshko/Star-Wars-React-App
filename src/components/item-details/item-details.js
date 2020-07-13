@@ -4,6 +4,8 @@ import './person-details.css'
 import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner/spinner'
 import ErrorBtn from '../error-btn/error-btn'
+import ErrorBoundry from '../error-boundry/error-boundry'
+
 
 const Record = ({item, field, label}) => {
 
@@ -79,21 +81,23 @@ export default class ItemDetails extends Component{
 
         const {name} = this.state.item
             return(
-                <div className = 'person-details card d-flex'>
-                    <img className = 'person-image'
-                         alt = {name} 
-                         src = {this.state.image}/>
-                    <div className = 'card-body'>
-                        <h4 className = 'person-name'>{name}</h4>
-                        <ul className = 'list-group list-group-flush'>
-                            
-                            {React.Children.map(this.props.children, child => {
-                                return React.cloneElement(child, {item})
-                            })}
-                        </ul>
+                <ErrorBoundry>
+                    <div className = 'person-details card d-flex'>
+                        <img className = 'person-image'
+                            alt = {name} 
+                            src = {this.state.image}/>
+                        <div className = 'card-body'>
+                            <h4 className = 'person-name'>{name}</h4>
+                            <ul className = 'list-group list-group-flush'>
+                                
+                                {React.Children.map(this.props.children, child => {
+                                    return React.cloneElement(child, {item})
+                                })}
+                            </ul>
+                        </div>
+                        <ErrorBtn/>
                     </div>
-                    <ErrorBtn/>
-                </div>
+                </ErrorBoundry>
         )        
     }        
 }
