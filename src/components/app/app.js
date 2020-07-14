@@ -45,6 +45,7 @@ export default class App extends Component{
                     <div className = 'app container'>
                         <Header onServiceChange = {this.onServiceChange}/>
                         <RandomPlanet/>
+                            <Route path = '/' render = {() => <h2>Welcome to Star Wars DB</h2>} exact/>
                             <Route path = '/people' component = {PersonPage}/>
                             <Route path = '/planets' component = {PlanetPage}/>
                             <Route path = '/starships' component = {StarshipPage}/>

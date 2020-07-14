@@ -3,6 +3,15 @@
     padding-left: 10px;
 }
 
+.header h3 a {
+    color:#fff;
+    text-decoration: none;
+}
+
+.header h3 a:hover{
+    color:#00bc8c
+}
+
 
 .header__nav{
     display: flex;
