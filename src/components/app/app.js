@@ -11,6 +11,7 @@ import DummySwapiService from '../../services/dummy-swapi-services'
 import ErrorBoundry from '../error-boundry/error-boundry'
 
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import StarshipDetails from '../sw-components/starship-details'
 
 
 export default class App extends Component{
@@ -48,7 +49,8 @@ export default class App extends Component{
                             <Route path = '/' render = {() => <h2>Welcome to Star Wars DB</h2>} exact/>
                             <Route path = '/people' component = {PersonPage}/>
                             <Route path = '/planets' component = {PlanetPage}/>
-                            <Route path = '/starships' component = {StarshipPage}/>
+                            <Route path = '/starships' component = {StarshipPage} exact/>
+                            <Route path = '/starships/:id' render = {({match}) => <StarshipDetails itemId = {match.params.id}/>}/>
                     </div>
                 </SwapiServiceProvider>
                 </Router>
