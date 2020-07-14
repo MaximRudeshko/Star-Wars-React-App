@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import './header.css'
+import { Link } from 'react-router-dom'
 
 export default class Header extends Component{
     render(){
@@ -8,9 +9,9 @@ export default class Header extends Component{
             <header className = 'header d-flex col-7 justify-content-between'>
                 <h3 className = 'header__logo col-4'>Star DB</h3>
                 <nav className = 'header__nav col-6 d-flex justify-content-between align-items-center'>
-                    <a href = 'google.com' className = 'header-nav__link'> People</a>
-                    <a href = 'google.com' className = 'header-nav__link'>Planets</a>
-                    <a href = 'google.com' className = 'header-nav__link'>Starships</a>
+                    <Link to = '/people'> People</Link>
+                    <Link to = '/planets' className = 'header-nav__link'>Planets</Link>
+                    <Link to = '/starships' className = 'header-nav__link'>Starships</Link>
                 </nav>
                 <button
                     className = 'btn btn-primary'
