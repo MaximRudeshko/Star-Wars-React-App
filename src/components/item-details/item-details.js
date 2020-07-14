@@ -25,7 +25,6 @@ export default class ItemDetails extends Component{
     state = {
         item: null,
         loading: false,
-        startMessage: true,
         image: null
     }
 
@@ -36,7 +35,6 @@ export default class ItemDetails extends Component{
     componentDidUpdate(prevProps){
         if(this.props.itemId !== prevProps.itemId || this.props.getData !== prevProps.getData || this.props.getImage !== prevProps.getImage){   
             this.setState({
-                startMessage:false,
                 loading:true,
                 item:null
             })
@@ -60,7 +58,6 @@ export default class ItemDetails extends Component{
                 console.log(item.id)
                 this.setState({
                     item,
-                    startMessage : false,
                     image:getImage(item)
                 })
                 
@@ -69,9 +66,6 @@ export default class ItemDetails extends Component{
 
     render(){
 
-        if(this.state.startMessage){
-            return <span className = 'choose-character'>Choose you favorite character</span>
-        } 
 
         if(!this.state.item){
             return <Spinner/>
